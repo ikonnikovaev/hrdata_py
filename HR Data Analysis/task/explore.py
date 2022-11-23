@@ -65,6 +65,17 @@ if __name__ == '__main__':
     # print(a_df.head())
     # print(b_df.head())
 
-    print(list(a_df.index.values))
-    print(list(b_df.index.values))
-    print(list(hr_df.index.values))
+    # print(list(a_df.index.values))
+    # print(list(b_df.index.values))
+    # print(list(hr_df.index.values))
+
+    office_df = pd.concat([a_df, b_df])
+    # print(office_df)
+
+    merged_df = office_df.merge(hr_df, left_index=True, right_index=True, indicator=True)
+    merged_df.drop(columns=['_merge'], inplace=True)
+    merged_df.sort_index(inplace=True)
+    # print(merged_df)
+
+    print(list(merged_df.index.values))
+    print(list(merged_df.columns.values))
