@@ -77,5 +77,10 @@ if __name__ == '__main__':
     merged_df.sort_index(inplace=True)
     # print(merged_df)
 
-    print(list(merged_df.index.values))
-    print(list(merged_df.columns.values))
+    # print(list(merged_df.index.values))
+    # print(list(merged_df.columns.values))
+    # print(merged_df.nlargest(10, 'average_monthly_hours')['Department'].tolist())
+    print(merged_df.sort_values('average_monthly_hours', ascending=False).head(10)['Department'].tolist())
+    print(merged_df.query("Department == 'IT' & salary == 'low'").number_project.sum())
+    print(merged_df.loc[['A4', 'B7064', 'A3033'], ['last_evaluation', 'satisfaction_level']].values.tolist())
+
